@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
+using AdminPortal.Models;
 using RestSharp;
+using AdminPortal.ViewModels;
 
 namespace AdminPortal.Models
 {
@@ -41,6 +43,14 @@ namespace AdminPortal.Models
       RestRequest request = new RestRequest($"animals/{id}", Method.DELETE);
       request.AddHeader("Content-Type", "application/json");
       var response = await client.ExecuteTaskAsync(request);
+    }
+    public static async Task<string> LogIn(LoginViewModel user)
+    {
+      RestClient client = new RestClient("http://localhost:5000/api");
+      RestRequest request = new RestRequest("authmanagement/login", Method.POST);
+      request.AddJsonBody(user);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
     }
   }
 }
