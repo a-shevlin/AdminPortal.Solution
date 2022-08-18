@@ -7,21 +7,21 @@ namespace AdminPortal.Models
 {
   class ApiHelper
   {
-    public static async Task<string> GetAll()
+    public static async Task<string> GetAllAnimals()
     {
       RestClient client = new RestClient("http://localhost:5000/api");
       RestRequest request = new RestRequest($"animals", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
-    public static async Task<string> Get(int id)
+    public static async Task<string> GetAnimal(int id)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
       RestRequest request = new RestRequest($"animals/{id}", Method.GET);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
-    public static async Task Post(string newAnimal)
+    public static async Task PostAnimal(string newAnimal)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
       RestRequest request = new RestRequest($"animals", Method.POST);
@@ -29,7 +29,7 @@ namespace AdminPortal.Models
       request.AddJsonBody(newAnimal);
       var response = await client.ExecuteTaskAsync(request);
     }
-    public static async Task Put(int id, string newAnimal)
+    public static async Task PutAnimal(int id, string newAnimal)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
       RestRequest request = new RestRequest($"animals/{id}", Method.PUT);
@@ -37,12 +37,20 @@ namespace AdminPortal.Models
       request.AddJsonBody(newAnimal);
       var response = await client.ExecuteTaskAsync(request);
     }
-    public static async Task Delete(int id)
+    public static async Task DeleteAnimal(int id)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
       RestRequest request = new RestRequest($"animals/{id}", Method.DELETE);
       request.AddHeader("Content-Type", "application/json");
       var response = await client.ExecuteTaskAsync(request);
+    }
+    public static async Task<string> GetAllTeams()
+    {
+      RestClient client = new RestClient("http://localhost:5000/api");
+      RestRequest request = new RestRequest($"teams", Method.GET);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
     }
     public static async Task<string> LogIn(LoginViewModel user)
     {

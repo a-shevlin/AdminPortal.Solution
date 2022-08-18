@@ -15,7 +15,7 @@ namespace AdminPortal.Models
 
     public static List<Animal> GetAnimals()
     {
-      var apiCallTask = ApiHelper.GetAll();
+      var apiCallTask = ApiHelper.GetAllAnimals();
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -25,7 +25,7 @@ namespace AdminPortal.Models
     }
     public static Animal GetDetails(int id)
     {
-      var apiCallTask = ApiHelper.Get(id);
+      var apiCallTask = ApiHelper.GetAnimal(id);
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
@@ -36,16 +36,16 @@ namespace AdminPortal.Models
     public static void Post(Animal animal)
     {
       string jsonAnimal = JsonConvert.SerializeObject(animal);
-      var apiCallTask = ApiHelper.Post(jsonAnimal);
+      var apiCallTask = ApiHelper.PostAnimal(jsonAnimal);
     }
     public static void Put(Animal animal)
     {
       string jsonAnimal = JsonConvert.SerializeObject(animal);
-      var apiCallTask = ApiHelper.Put(animal.AnimalId, jsonAnimal);
+      var apiCallTask = ApiHelper.PutAnimal(animal.AnimalId, jsonAnimal);
     }
     public static void Delete(int id)
     {
-      var apiCallTask = ApiHelper.Delete(id);
+      var apiCallTask = ApiHelper.DeleteAnimal(id);
     }
   }
 }
