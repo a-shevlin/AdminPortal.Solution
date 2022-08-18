@@ -1,0 +1,16 @@
+@model AdminPortal.Models.Team;
+@{
+  Layout = "_Layout";
+}
+
+<h1>EDIT:</h1>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h4>Edit this Team Name: @Html.DisplayFor(model => model.Name)</h4>
+
+@Html.HiddenFor(model => model.TeamId)
+
+@Html.LabelFor(model => model.Name, "Name:" , new { @class="customLabel"})
+@Html.EditorFor(model => model.Name)
+
+<input class = "saveicon" type="image" img src="https://raw.githubusercontent.com/GarrettHays/images/main/noun-save-5040600.png" style="width:20px;"> <a href="@Url.Action("Delete", "Teams",  new { id = Model.TeamId })"><img class = "trashicon" src="https://raw.githubusercontent.com/GarrettHays/images/main/noun-trash-can-2342129.png" style="width:20px;"></a>
+</div>

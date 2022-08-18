@@ -56,7 +56,7 @@ namespace AdminPortal.Models
     public static async Task<string> GetTeam(int id)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
-      RestRequest request = new RestRequest($"animals/{id}", Method.GET);
+      RestRequest request = new RestRequest($"teams/{id}", Method.GET);
       request.AddHeader("Authorization", "Bearer " + TokenC.Token);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
@@ -64,23 +64,23 @@ namespace AdminPortal.Models
     public static async Task PostTeam(string newAnimal)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
-      RestRequest request = new RestRequest($"animals", Method.POST);
+      RestRequest request = new RestRequest($"teams", Method.POST);
       request.AddHeader("Authorization", "Bearer " + TokenC.Token);
       request.AddJsonBody(newAnimal);
       var response = await client.ExecuteTaskAsync(request);
     }
-    public static async Task PutTeam(int id, string newAnimal)
+    public static async Task PutTeam(int id, string newTeam)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
-      RestRequest request = new RestRequest($"animals/{id}", Method.PUT);
+      RestRequest request = new RestRequest($"teams/{id}", Method.PUT);
       request.AddHeader("Authorization", "Bearer " + TokenC.Token);
-      request.AddJsonBody(newAnimal);
+      request.AddJsonBody(newTeam);
       var response = await client.ExecuteTaskAsync(request);
     }
     public static async Task DeleteTeam(int id)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
-      RestRequest request = new RestRequest($"animals/{id}", Method.DELETE);
+      RestRequest request = new RestRequest($"teams/{id}", Method.DELETE);
       request.AddHeader("Authorization", "Bearer " + TokenC.Token);
       var response = await client.ExecuteTaskAsync(request);
     }
