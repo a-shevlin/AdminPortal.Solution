@@ -1,26 +1,21 @@
-@model AdminPortal.Models.Team;
 @{
   Layout = "_Layout";
 }
 
-<h1>TEAM DETAILS:</h1>
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+@model AdminPortal.Models.Team
 
-<ul>
-  {
-    <li>@Model.TeamId
-    <input type="image" class = "flavortrashicon" img src="https://raw.githubusercontent.com/GarrettHays/images/main/noun-trash-can-2342129.png" style="width:20px;"/></li>
-    <li>@Model.Name</li>
-    <li>@Model.Wins</li>
-    <li>@Model.Losses</li>
-    <li>@Model.PlayerId</li>
-  }
-</ul>
+<h4>@Model.Name</h4>
 
+<p>ID: @Model.TeamId</p>
+<p>Name: @Model.Name</p>
+<p>Wins: @Model.Wins</p>
+<p>Losses: @Model.Losses</p>
+<p>PlayerId: @Model.PlayerId</p>
 
+<hr />
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.TeamId })</p>
+<p>@Html.ActionLink("Delete", "Delete", new { id = Model.TeamId })</p>
+<hr />
+<p>@Html.ActionLink("Teams List", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
 
-<p>
-  @Html.ActionLink("Back to Teams", "Index", null, null, new { @class ="htmlButton"})
-  @Html.ActionLink("Edit Team", "Edit", null, new {id = Model.TeamId }, new { @class ="htmlButton"})
-  @Html.ActionLink("Delete Team", "Delete", null, new {id = Model.TeamId }, new { @class ="htmlButton"})
-</p>

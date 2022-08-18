@@ -99,13 +99,23 @@ namespace AdminPortal.Models
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
-    public static async Task PostTeam(string newAnimal)
+    
+    public static async Task PostTeam(string newTeam)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
       RestRequest request = new RestRequest($"teams", Method.POST);
+      request.AddHeader("Content-Type", "application/json");
       request.AddHeader("Authorization", "Bearer " + TokenC.Token);
-      request.AddJsonBody(newAnimal);
+      request.AddJsonBody(newTeam);
       var response = await client.ExecuteTaskAsync(request);
+      if (response.StatusCode == HttpStatusCode.Unauthorized)
+      {
+        if (await RefreshToken())
+        {
+          await PostTeam(newTeam);
+        }
+        // can put else here if refreshtoken returns fail
+      }
     }
     public static async Task PutTeam(int id, string newTeam)
     {

@@ -23,6 +23,18 @@ namespace AdminPortal.Controllers
       return RedirectToAction("Index");
     }
 
+    public IActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Team team)
+    {
+      Team.Post(team);
+      return RedirectToAction("Index");
+    }
+
     public IActionResult Details(int id)
     {
       var team = Team.GetDetails(id);

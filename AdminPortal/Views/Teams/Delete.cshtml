@@ -1,15 +1,17 @@
-@model AdminPortal.Models.Team;
 @{
   Layout = "_Layout";
 }
 
-<h1>EDIT:</h1>
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
-<h4>Edit this Team Name: @Html.DisplayFor(model => model.Name)</h4>
+@model AdminPortal.Models.Team
 
-<h2>Are you sure you want to delete @Html.DisplayFor(model => model.Name)?</h2>
+<h4>Delete @Model.Name?</h4>
 
-@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
-<input type="submit" value="Delete" class="htmlButton"/>
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" class="btn btn-dark" />
+}
 
-@Html.ActionLink("Back to Teams", "Index", null, null, new { @class="htmlButton"})
+<hr />
+<p>@Html.ActionLink("Back", "Details", new { id = Model.TeamId })</p>
+
+
