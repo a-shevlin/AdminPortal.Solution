@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AdminPortal.Models.Animal
+
+<h4>Add a New Animal</h4>
+
+@using (Html.BeginForm())
+{
+  <div>
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Image)
+    @Html.TextBoxFor(model => model.Image)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.HP)
+    @Html.TextBoxFor(model => model.HP)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Attack)
+    @Html.TextBoxFor(model => model.Attack)
+  </div>
+
+  <input type="submit" value="Add New Animal" class="btn btn-dark" />
+}
+
+<p>@Html.ActionLink("List of Animals", "Index")</p>

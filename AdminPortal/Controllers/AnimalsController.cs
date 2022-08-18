@@ -29,6 +29,18 @@ namespace AdminPortal.Controllers
       return View(animal);
     }
 
+    public IActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Animal animal)
+    {
+      Animal.Post(animal);
+      return RedirectToAction("Index");
+    }
+
     public IActionResult Edit(int id)
     {
       var animal = Animal.GetDetails(id);
@@ -36,14 +48,21 @@ namespace AdminPortal.Controllers
     }
 
     [HttpPost]
-    public IActionResult Details(int id, Animal animal)
+    public IActionResult Edit(Animal animal)
     {
-      animal.AnimalId = id;
+      int id = animal.AnimalId;
       Animal.Put(animal);
-      return RedirectToAction("Details", id);
+      return RedirectToAction("Details", new { id = id });
     }
 
     public IActionResult Delete(int id)
+    {
+      var animal = Animal.GetDetails(id);
+      return View(animal);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public IActionResult Deleted(int id)
     {
       Animal.Delete(id);
       return RedirectToAction("Index");

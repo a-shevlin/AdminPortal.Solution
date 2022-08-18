@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AdminPortal.Models.Animal
+
+<h4>@Model.Name</h4>
+
+<p>ID: @Model.AnimalId</p>
+<p><a href="@Model.Image">Image Link</a></p>
+<p>HP: @Model.HP</p>
+<p>Attack: @Model.Attack</p>
+
+<hr />
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.AnimalId })</p>
+<p>@Html.ActionLink("Delete", "Delete", new { id = Model.AnimalId })</p>
+<hr />
+<p>@Html.ActionLink("Animals List", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
