@@ -2,7 +2,7 @@ namespace AdminPortal.Models
 {
   public class TokenC
   {
-    public string Token { get; set; }
-    public string RefreshToken { get; set; }
+    public static string Token { get; set; }
+    public static string RefreshToken { get; set; }
   }
 }

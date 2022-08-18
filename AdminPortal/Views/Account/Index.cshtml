@@ -2,7 +2,8 @@
   Layout = "_Layout";
 }
 
-@if (ViewBag.Response != null)
+@if (ViewBag.Token != null)
 {
-  <p>@ViewBag.Response</p>
+  <p>@ViewBag.Token</p>
+  <p>@ViewBag.RefreshToken</p>
 }
