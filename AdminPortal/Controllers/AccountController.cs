@@ -14,7 +14,7 @@ namespace AdminPortal.Controllers
 {
   public class AccountController : Controller
   {
-    public IActionResult Index()
+    public ActionResult Index()
     {
       if (TokenC.Token != null)
       {

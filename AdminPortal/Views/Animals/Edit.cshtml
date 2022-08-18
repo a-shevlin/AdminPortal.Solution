@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+@using AdminPortal.Models
+@model AdminPortal.Models.Animal
+
+<h3>Edit this Animal: @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.AnimalId)
+  <div>
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Image)
+    @Html.EditorFor(model => model.Image)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.HP)
+    @Html.EditorFor(model => model.HP)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Attack)
+    @Html.EditorFor(model => model.Attack)
+  </div>
+
+  <input type="submit" value="Save" />
+}
+<hr />
+
+<p>@Html.ActionLink("Back", "Details", new { id = Model.AnimalId })</p>
