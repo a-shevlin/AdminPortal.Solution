@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>All Teams:</h1>
+
+<ol>
+@foreach (Team team in Model)
+{
+    <ul>
+        <li>ID: @team.TeamId</li>
+        <li>Name: @team.Name</li>
+        <li>Wins: @team.Wins</li>
+        <li>Losses: @team.Losses</li>
+        <li>Player: @team.PlayerId</li>
+    </ul>
+    <a href="/Teams/Details/@(team.TeamId)"><p>View Details</p></a>
+    <br>
+}
+</ol>

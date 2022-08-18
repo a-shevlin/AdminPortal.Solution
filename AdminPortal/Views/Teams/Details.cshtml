@@ -1,0 +1,26 @@
+@model AdminPortal.Models.Team;
+@{
+  Layout = "_Layout";
+}
+
+<h1>TEAM DETAILS:</h1>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+<ul>
+  {
+    <li>@Model.TeamId
+    <input type="image" class = "flavortrashicon" img src="https://raw.githubusercontent.com/GarrettHays/images/main/noun-trash-can-2342129.png" style="width:20px;"/></li>
+    <li>@Model.Name</li>
+    <li>@Model.Wins</li>
+    <li>@Model.Losses</li>
+    <li>@Model.PlayerId</li>
+  }
+</ul>
+
+
+
+<p>
+  @Html.ActionLink("Back to Teams", "Index", null, null, new { @class ="htmlButton"})
+  @Html.ActionLink("Edit Team", "Edit", null, new {id = Model.TeamId }, new { @class ="htmlButton"})
+  @Html.ActionLink("Delete Team", "Delete", null, new {id = Model.TeamId }, new { @class ="htmlButton"})
+</p>
