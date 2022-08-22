@@ -90,6 +90,48 @@ namespace AdminPortal.Models
       }
       return response.Content;
     }
+
+    public static async Task<string> GetTeam(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5000/api");
+      RestRequest request = new RestRequest($"teams/{id}", Method.GET);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
+    }
+    
+    public static async Task PostTeam(string newTeam)
+    {
+      RestClient client = new RestClient("http://localhost:5000/api");
+      RestRequest request = new RestRequest($"teams", Method.POST);
+      request.AddHeader("Content-Type", "application/json");
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      request.AddJsonBody(newTeam);
+      var response = await client.ExecuteTaskAsync(request);
+      if (response.StatusCode == HttpStatusCode.Unauthorized)
+      {
+        if (await RefreshToken())
+        {
+          await PostTeam(newTeam);
+        }
+        // can put else here if refreshtoken returns fail
+      }
+    }
+    public static async Task PutTeam(int id, string newTeam)
+    {
+      RestClient client = new RestClient("http://localhost:5000/api");
+      RestRequest request = new RestRequest($"teams/{id}", Method.PUT);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      request.AddJsonBody(newTeam);
+      var response = await client.ExecuteTaskAsync(request);
+    }
+    public static async Task DeleteTeam(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5000/api");
+      RestRequest request = new RestRequest($"teams/{id}", Method.DELETE);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+    }
     public static async Task<string> LogIn(LoginViewModel user)
     {
       RestClient client = new RestClient("http://localhost:5000/api");
