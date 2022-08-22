@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+@using AdminPortal.Models
+@model AdminPortal.Models.Team
+
+<h3>Edit this Team: @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TeamId)
+  <div>
+    @Html.LabelFor(model => model.TeamId)
+    @Html.TextBoxFor(model => model.TeamId)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Wins)
+    @Html.TextBoxFor(model => model.Wins)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Losses)
+    @Html.TextBoxFor(model => model.Losses)
+  </div>
+
+  <input type="submit" value="Save" />
+}
+<hr />
+
+<p>@Html.ActionLink("Back", "Details", new { id = Model.TeamId })</p>

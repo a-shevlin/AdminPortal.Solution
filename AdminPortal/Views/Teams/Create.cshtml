@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AdminPortal.Models.Team
+
+<h4>Add a New Team</h4>
+
+@using (Html.BeginForm())
+{
+  <div>
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Wins)
+    @Html.TextBoxFor(model => model.Wins)
+  </div>
+  <div>
+    @Html.LabelFor(model => model.Losses)
+    @Html.TextBoxFor(model => model.Losses)
+  </div>
+
+  <input type="submit" value="Add New Team" class="btn btn-dark" />
+}
+
+<p>@Html.ActionLink("List of Teams", "Index")</p>

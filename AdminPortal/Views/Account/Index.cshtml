@@ -2,12 +2,13 @@
   Layout = "_Layout";
 }
 
-@if (ViewBag.Token != null)
+@* @if (ViewBag.Token != null)
 {
   <p>@ViewBag.Token</p>
   <p>@ViewBag.RefreshToken</p>
-}
+} *@
 
 <p>@Model</p>
 
 <p>@Html.ActionLink("List of Animals", "Index", "Animals")</p>
+<p>@Html.ActionLink("List of Teams", "Index", "Teams")</p>
