@@ -30,4 +30,36 @@
 }
 <hr />
 
+<h4>Animals part of @Model.Name</h4>
+<div class="mb-3">
+  <ul>
+    @foreach (KeyValuePair<int, Animal> entry in ViewBag.AnimalsInTeam)
+    {
+      <li>
+        @entry.Value.Name:
+        HP: @entry.Value.HP
+        Attack: @entry.Value.Attack
+        @using (Html.BeginForm("DeleteAnimalFromTeam", "Teams", FormMethod.Post, new { @class = "form-inline" }))
+        {
+          @Html.Hidden("TeamId", Model.TeamId)
+          @Html.Hidden("AnimalTeamId", entry.Key)
+          <input type="submit" value="Delete" class="btn btn-dark" />
+        }
+      </li>
+    }
+  </ul>
+</div>
+<hr />
+
+<h4>Add Animals...</h4>
+@using (Html.BeginForm("AddAnimalToTeam", "Teams"))
+{
+  @Html.Hidden("TeamId", Model.TeamId)
+  <div class="mb-3">
+    @Html.DropDownList("AnimalId", ViewBag.Animals, null, new { required = "required" })
+  </div>
+  <input type="submit" value="Add New Animal" />
+}
+
+<hr />
 <p>@Html.ActionLink("Back", "Details", new { id = Model.TeamId })</p>

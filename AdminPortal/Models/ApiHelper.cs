@@ -99,7 +99,7 @@ namespace AdminPortal.Models
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
-    
+
     public static async Task PostTeam(string newTeam)
     {
       RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
@@ -132,6 +132,35 @@ namespace AdminPortal.Models
       request.AddHeader("Authorization", "Bearer " + TokenC.Token);
       var response = await client.ExecuteTaskAsync(request);
     }
+
+    public static async Task<string> PostAnimalToTeam(int teamId, int animalId)
+    {
+      RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
+      RestRequest request = new RestRequest($"teams/{teamId}/{animalId}", Method.POST);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
+    }
+
+    public static async Task<string> GetAnimalTeams(int id)
+    {
+      RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
+      RestRequest request = new RestRequest($"animalteams/{id}", Method.GET);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
+    }
+
+    public static async Task<string> DeleteAnimalTeam(int id)
+    {
+      // eventually need to also pass in UserId to confirm that they can delete it
+      RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
+      RestRequest request = new RestRequest($"animalteams/{id}", Method.DELETE);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
+    }
+
     public static async Task<string> LogIn(LoginViewModel user)
     {
       RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
