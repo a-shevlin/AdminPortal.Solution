@@ -40,6 +40,14 @@ namespace AdminPortal.Controllers
     public IActionResult Details(int id)
     {
       var team = Team.GetDetails(id);
+      List<Animal> animals = Animal.GetAnimals();
+      List<AnimalTeam> ats = AnimalTeam.GetAnimalTeams(id);
+      Dictionary<int, Animal> animalsInTeam = new Dictionary<int, Animal>();
+      for (int i = 0; i < ats.Count; i++)
+      {
+        animalsInTeam.Add(ats[i].AnimalTeamId, animals.FirstOrDefault(a => a.AnimalId == ats[i].AnimalId)!);
+      }
+      ViewBag.AnimalsInTeam = animalsInTeam;
       return View(team);
     }
 
