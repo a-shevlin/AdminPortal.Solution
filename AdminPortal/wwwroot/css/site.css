@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.index-images {
+  width: 100px;
+}
+
+.details-link {
+  margin-bottom: 10px;
+}

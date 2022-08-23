@@ -46,5 +46,16 @@ namespace AdminPortal.Models
     {
       var apiCallTask = ApiHelper.DeleteTeam(id);
     }
+
+    public static AnimalTeam PostAnimalToTeam(int teamId, int animalId)
+    {
+      var apiCallTask = ApiHelper.PostAnimalToTeam(teamId, animalId);
+      var result = apiCallTask.Result;
+
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      AnimalTeam animalTeam = JsonConvert.DeserializeObject<AnimalTeam>(jsonResponse.ToString());
+
+      return animalTeam;
+    }
   }
 }

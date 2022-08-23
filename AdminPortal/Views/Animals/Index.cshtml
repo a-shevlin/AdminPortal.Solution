@@ -15,9 +15,12 @@
       <li>Name: @animal.Name</li>
       <li>HP: @animal.HP</li>
       <li>Attack: @animal.Attack</li>
+      <li><img class="index-images" src="@animal.Image" /></li>
     </ul>
-    <a href="/Animals/Details/@(animal.AnimalId)">
-      <p>View Details</p>
-    </a>
+    <div class="details-link">
+      <a href="/Animals/Details/@(animal.AnimalId)">
+        View Details
+      </a>
+    </div>
   }
 </ol>
