@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AdminPortal.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace AdminPortal.Controllers
 {
@@ -92,6 +93,25 @@ namespace AdminPortal.Controllers
     {
       Team.Delete(id);
       return RedirectToAction("Index");
+    }
+
+    public IActionResult Battle(int id)
+    {
+      var team = Team.GetDetails(id);
+      return View(team);
+    }
+
+    public IActionResult BattleResult(string result)
+    {
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      return View(jsonResponse);
+    }
+
+    [HttpPost]
+    public IActionResult GetBattleOutcome(int id)
+    {
+      string result = Team.GetBattleResult(id);
+      return RedirectToAction("BattleResult", new { result = result });
     }
   }
 }

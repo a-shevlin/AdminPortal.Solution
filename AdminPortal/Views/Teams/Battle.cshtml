@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AdminPortal.Models.Team
+
+<h4>@Model.Name : @Model.TeamId</h4>
+
+<hr />
+@using (Html.BeginForm("GetBattleOutcome", "Teams"))
+{
+  @Html.Hidden("id", Model.TeamId)
+  <input type="submit" value="Go Fight!" />
+}
+
+<hr />
+<p>@Html.ActionLink("Back", "Details", new { id = Model.TeamId })</p>

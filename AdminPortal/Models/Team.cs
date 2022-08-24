@@ -11,6 +11,7 @@ namespace AdminPortal.Models
     public string Name { get; set; }
     public int Wins { get; set; }
     public int Losses { get; set; }
+    public string UserId { get; set; }
 
     public static List<Team> GetTeams()
     {
@@ -56,6 +57,20 @@ namespace AdminPortal.Models
       AnimalTeam animalTeam = JsonConvert.DeserializeObject<AnimalTeam>(jsonResponse.ToString());
 
       return animalTeam;
+    }
+
+    public static string GetBattleResult(int teamId)
+    {
+      var apiCallTask = ApiHelper.GetBattleResult(teamId);
+      var result = apiCallTask.Result;
+
+      // JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+
+      // int outcome = Int32.Parse(jsonResponse["outcome"].ToString());
+      // int team1 = Int32.Parse(jsonResponse["team1"].ToString());
+      // int team2 = Int32.Parse(jsonResponse["team2"].ToString());
+
+      return result;
     }
   }
 }

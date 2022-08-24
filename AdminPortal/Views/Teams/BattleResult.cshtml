@@ -1,0 +1,49 @@
+@using Newtonsoft.Json.Linq;
+@using Newtonsoft.Json;
+@model JObject
+
+@{
+  Layout = "_Layout";
+
+  int winner = Int32.Parse(Model["outcome"].ToString());
+  string t1Name = Model["team1"]["name"].ToString();
+  string t2Name = Model["team2"]["name"].ToString();
+  List<Animal> t1 = JsonConvert.DeserializeObject<List<Animal>>(Model["team1"]["animals"].ToString());
+  List<Animal> t2 = JsonConvert.DeserializeObject<List<Animal>>(Model["team2"]["animals"].ToString());
+}
+
+<div>
+  <h2>@t1Name vs. @t2Name</h2>
+  <hr />
+  @if (winner == 1)
+  {
+    <h5>Team @t1Name won!</h5>
+  }
+  else if (winner == 2)
+  {
+    <h5>Team @t2Name won!</h5>
+  }
+  else
+  {
+    <h5>It was a tie.</h5>
+  }
+</div>
+
+<hr />
+<div>
+  <p>Your Team: <strong>@t1Name</strong></p>
+  @foreach (Animal a in t1)
+  {
+    <p>@a.Name</p>
+  }
+</div>
+<div>
+  <p>Enemy Team: <strong>@t2Name</strong></p>
+  @foreach (Animal a in t2)
+  {
+    <p>@a.Name</p>
+  }
+</div>
+
+<hr />
+<p>@Html.ActionLink("Team List", "Index")</p>
