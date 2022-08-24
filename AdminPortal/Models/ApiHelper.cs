@@ -142,6 +142,15 @@ namespace AdminPortal.Models
       return response.Content;
     }
 
+    public static async Task<string> GetBattleResult(int teamId)
+    {
+      RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
+      RestRequest request = new RestRequest($"teams/battle/{teamId}", Method.GET);
+      request.AddHeader("Authorization", "Bearer " + TokenC.Token);
+      var response = await client.ExecuteTaskAsync(request);
+      return response.Content;
+    }
+
     public static async Task<string> GetAnimalTeams(int id)
     {
       RestClient client = new RestClient("https://slagapi.azurewebsites.net/api");
